@@ -1,6 +1,6 @@
 export const URLS = {
   DEV : "http://localhost:5000",
-  PROD : "https://xmeme-crio.herokuapp.com/memes",
+  PROD : "https://xmeme-crio.herokuapp.com",
 }
 export interface memeData{ 
   posted_by: string,

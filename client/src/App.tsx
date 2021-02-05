@@ -14,11 +14,13 @@ function App() {
       console.log(response);
     }catch(e){
       console.log(e);
-    }
-    
+    }  
   }
   useEffect(()=>{
     getMemes()
+    setInterval(()=>{
+      getMemes()
+    },2*1000*60)
   },[])
   return (
     <div>

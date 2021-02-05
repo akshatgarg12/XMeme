@@ -12,8 +12,16 @@ const layout = {
 
 
 const MemeForm = () => {
+  const initialFormData:memeData ={
+    posted_by:"",
+    caption:"",
+    meme_src:""
+  } 
+  const [formData, setFormData] = useState<memeData>(initialFormData)
+
   const onFinish = (values: any) => {
     console.log(formData);
+    setFormData(initialFormData)
     submitHandler()
   };
 
@@ -36,11 +44,7 @@ const MemeForm = () => {
   }
 
   
-  const [formData, setFormData] = useState<memeData>({
-    posted_by:"",
-    caption:"",
-    meme_src:""
-  })
+  
 
   return (
     <div className="memeform__container">

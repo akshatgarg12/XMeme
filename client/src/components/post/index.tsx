@@ -10,7 +10,7 @@ const Post: React.FC<postData> = ({_id, createdAt,posted_by, caption, meme_src})
     <div className="card">
       <div className="card__header">
         <h3>{posted_by}</h3>
-        <p>{createdAt}</p>
+        <p>{new Date(createdAt).toLocaleDateString()}</p>
       </div>
       <div className="card__caption">
         <h4>{caption}</h4>

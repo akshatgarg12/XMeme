@@ -1,6 +1,6 @@
 export const URLS = {
   DEV : "http://localhost:5000",
-  PROD : "",
+  PROD : "http://localhost:5000",
 }
 export interface memeData{ 
   posted_by: string,

@@ -5,12 +5,11 @@
   margin: auto;
 }
 .memeform__button{
-  background-color: red !important;
+  background-color: rgb(121, 121, 241) !important;
   outline: none;
   border:none !important;
-  border-radius: 10px !important;
-  /* width: 60%; */
-  margin-left: 165px;
+  margin: 0;
+  padding: 0;
 }
 
 @media screen and (max-width:575px){

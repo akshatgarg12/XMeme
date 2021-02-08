@@ -11,7 +11,7 @@ const Feed: React.FC<FeedProps | null> = ({memes}) => {
   return (
     <>
       <div className="feed">    
-        {memes ? memes.map(({_id, createdAt, posted_by, caption, meme_src})=>{
+        {memes && memes.length ? memes.map(({_id, createdAt, posted_by, caption, meme_src})=>{
           return <Post 
                   key = {_id}
                   _id = {_id}

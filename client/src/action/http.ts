@@ -22,7 +22,6 @@ export const HTTP_REQUEST = async ({method, path, body, setLoading} : params) =>
         headers,
         baseURL
       });
-      console.log(request.data)
       return request.data
     }catch(e){
       console.log(e.response.data)

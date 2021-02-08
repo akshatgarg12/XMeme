@@ -22,7 +22,6 @@ const MemeSchema = new mongoose.Schema({
     type:String,
     required:[true, "meme source is a required field"],
     trim:true,
-    unique:[true, "this meme already exists"]
   }
 },{
   timestamps:true

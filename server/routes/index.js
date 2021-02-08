@@ -8,5 +8,6 @@ router.route('/memes')
       .get(memeController.READ)
       .post(memeController.CREATE)
 
+router.patch('/memes/:_id', memeController.UPDATE)
 
 module.exports = router

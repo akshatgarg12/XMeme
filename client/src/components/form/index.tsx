@@ -2,14 +2,15 @@ import { Form, Input, Button } from 'antd';
 import { ChangeEvent, useState } from 'react';
 import {HTTP_REQUEST} from '../../action/http';
 import {memeData} from '../../constant'
+import {updateMemes} from '../../action/utilityFunctions'
+import {useMemeContext} from '../../context/useMemeContext'
+
 import './style.css'
 
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
 };
-
-
 
 const MemeForm = () => {
   const initialFormData:memeData ={
@@ -18,10 +19,10 @@ const MemeForm = () => {
     meme_src:""
   } 
   const [formData, setFormData] = useState<memeData>(initialFormData)
-
+  const [loading, setLoading] = useState<boolean>(false)
   const onFinish = (values: any) => {
     console.log(formData);
-    setFormData(initialFormData)
+    // setFormData(initialFormData)
     submitHandler()
   };
 
@@ -33,19 +34,22 @@ const MemeForm = () => {
     const {name, value} = e.target
     setFormData((prev) => ({...prev, [name]: value}))
   }
+  const {dispatch}  = useMemeContext()
+ 
   const submitHandler = async () => {
+    setLoading(true)
     try{
       const request = await HTTP_REQUEST({method:"POST", path:"/memes", body:formData, setLoading:null})
       console.log(request)
     }
     catch(e){
       console.log(e.message);
+    }finally{
+      updateMemes(dispatch)
+      setFormData(initialFormData)
+      setLoading(false)
     }
   }
-
-  
-  
-
   return (
     <div className="memeform__container">
       <Form
@@ -80,7 +84,7 @@ const MemeForm = () => {
           <Input value={formData?.meme_src}  name="meme_src" onChange={changeHandler}  />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="memeform__button" >
+          <Button type="primary" htmlType="submit" className="memeform__button" loading={loading}>
             Submit Meme
           </Button>
         </Form.Item>

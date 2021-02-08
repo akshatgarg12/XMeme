@@ -54,7 +54,32 @@ const READ = async (req, res) =>{
   }
 }
 
+const UPDATE = async (req, res) => {
+  const {caption ,  meme_src} = req.body
+  const {_id} = req.params
+  try{
+    let meme = await Meme.findOne({_id})
+    if(meme){
+      if(caption){
+        meme.caption = caption
+      }
+      if(meme_src){
+        meme.meme_src = meme_src
+      }
+      await meme.save()
+      res.send(meme)
+    }else{
+      console.log("meme not found")
+      res.status(404).json({error:"Incorrect Id, meme not found🙀"})
+    }
+  }catch(e){
+    console.log(e.message)
+    res.status(500).json({error:e.message})
+  }
+}
+
 module.exports = {
   CREATE,
-  READ
+  READ,
+  UPDATE
 }

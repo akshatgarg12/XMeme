@@ -4,6 +4,8 @@ import Feed from "./components/feed";
 import {HTTP_REQUEST} from './action/http'
 import { useEffect, useState } from "react";
 import { postData } from "./components/post";
+import Header from "./components/header";
+
   
 function App() {
   const [memes, setMemes] = useState<[postData] | null>(null)
@@ -24,7 +26,7 @@ function App() {
   },[])
   return (
     <div>
-      <h1>XMeme App</h1>
+      <Header />
       <section style={{margin:"auto"}}>
         <Row>
           <Col className="gutter-row" lg={24} md={24} xs={24}>

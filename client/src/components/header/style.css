@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@keyframes changing-background{
+  0% {
+    background-color:#6050dc;
+  }
+  25%{
+    background-color:#6a5acd;
+
+  }
+  75%{
+    background-color:#c71585;
+
+  }
+  100%{
+    background-color:#FF1476;
+  }
+}
+
+@keyframes border-highlights{
+  0%{
+    color:white;
+  }
+  100%{
+    outline-color: thistle;
+  }
+}
+.header {
+  animation: changing-background;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.header h1{
+  animation: border-highlights;
+  transition: all ease .1s;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  margin: auto;
+  font-family: 'Press Start 2P', cursive;
+}

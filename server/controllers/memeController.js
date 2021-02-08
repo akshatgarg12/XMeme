@@ -31,21 +31,21 @@ const CREATE = async (req, res) => {
 const READ = async (req, res) =>{
   // in case of pagination (required feilds)
   let {limit, offset} = req.query
-  console.log(limit, offset)
   // default setting the values if not provided
   if(!offset){
     offset = 0;
   }
   if(!limit){
-    limit = 10
+    limit = 100
   }
   // parse to integer from JSON string
   limit = parseInt(limit)
   offset = parseInt(offset)
   try{
     /* getting the docs from db based on pagination params, to make query efficent 
-    in case of more than a 1000 docs */
-    const memes = await Meme.find({}).skip(offset).limit(limit)
+    in case of more than a 100 docs */
+    // the memes are returned in the order latest created.
+    const memes = await Meme.find({}).sort({_id:-1}).skip(offset).limit(limit)
     res.send(memes)
   }
   catch(e){

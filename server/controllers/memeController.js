@@ -7,28 +7,50 @@ const Meme = require("../models/meme")
 */
 
 const CREATE = async (req, res) => {
-  const {posted_by, caption, meme_src} = req.body
+  const {name, caption, url} = req.body
+
   // check for null values (server side form validation)
-  if(!posted_by || !caption || !meme_src){
+  if(!name || !caption || !url){
     res.status(400).json({message:"Bad request", displayMessage:"Please send all the required fields"})
     return;
   }
   try{
     // create a new meme document and save it
-    const newMeme = new Meme({posted_by, caption, meme_src})
+    const newMeme = new Meme({name, caption, url})
     await newMeme.save()
-    res.send(newMeme)
+    res.json({id : newMeme._id})
+    return;
   }catch(e){
     // duplication error
+    console.log(e)
     if(e.code === 11000){
-      res.status(400).json({message:"Bad request", displayMessage:"This meme already exists."})
+      res.status(409).json({message:"Bad request", displayMessage:"This meme already exists."})
+      return;
     }
     // server error
     res.status(500).json({message:"Server Error", displayMessage:e.message})
+    return;
   }
 }
 
 const READ = async (req, res) =>{
+
+  const {_id} = req.params
+  if(_id){
+    try{
+      const meme = await Meme.findOne({_id})
+      if(!meme){
+        res.status(404).json({error:"Incorrect Id, meme not found🙀"})
+        return;
+      }
+      res.send(meme)
+    }catch(e){
+      console.log(e.message)
+      res.status(500).json({error:e.message})
+    }
+    return;
+  }
+
   // in case of pagination (required feilds)
   let {limit, offset} = req.query
   // default setting the values if not provided
@@ -36,7 +58,7 @@ const READ = async (req, res) =>{
     offset = 0;
   }
   if(!limit){
-    limit = 100
+    limit = 100 // by default it will return the latest 100 memes
   }
   // parse to integer from JSON string
   limit = parseInt(limit)
@@ -55,7 +77,7 @@ const READ = async (req, res) =>{
 }
 
 const UPDATE = async (req, res) => {
-  const {caption ,  meme_src} = req.body
+  const {caption ,  url} = req.body
   const {_id} = req.params
   try{
     let meme = await Meme.findOne({_id})
@@ -63,8 +85,8 @@ const UPDATE = async (req, res) => {
       if(caption){
         meme.caption = caption
       }
-      if(meme_src){
-        meme.meme_src = meme_src
+      if(url){
+        meme.url = url
       }
       await meme.save()
       res.send(meme)
@@ -74,6 +96,10 @@ const UPDATE = async (req, res) => {
     }
   }catch(e){
     console.log(e.message)
+    if(e.code === 11000){
+      res.status(409).json({message:"Bad request", displayMessage:"This meme already exists."})
+      return;
+    }
     res.status(500).json({error:e.message})
   }
 }

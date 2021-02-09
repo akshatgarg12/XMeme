@@ -2,13 +2,15 @@ const mongoose = require('mongoose')
 
 /* 
  Defining the schema of the documents in the Meme collection ::
- posted_by: is the username 
+ name: is the username 
  caption: self explainatory
- meme_src: is expected to be a url of a photo
+ url: is expected to be a url of a photo
 */
 
+
+
 const MemeSchema = new mongoose.Schema({
-  posted_by:{
+  name:{
     type:String,
     required:[true, "Name of the user who posted is required"],
     trim:true
@@ -18,7 +20,7 @@ const MemeSchema = new mongoose.Schema({
     default:"",
     trim:true
   },
-  meme_src:{
+  url:{
     type:String,
     required:[true, "meme source is a required field"],
     trim:true,
@@ -27,5 +29,7 @@ const MemeSchema = new mongoose.Schema({
   timestamps:true
 })
 
+// check for unique
+MemeSchema.index({ name: 1, caption: 1, url: 1 }, {unique:true})
 
 module.exports = new mongoose.model('Meme', MemeSchema);

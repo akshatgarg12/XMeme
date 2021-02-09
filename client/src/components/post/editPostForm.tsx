@@ -6,13 +6,13 @@ import {ChangeEvent, useState} from 'react'
 
 interface EditFormData{
   caption : string,
-  meme_src : string
+  url : string
 }
 
 const EditForm :React.FC<{_id:string, toggleShowForm:any}> = ({_id,toggleShowForm}) => { 
   const initialFormData:EditFormData = {
     caption : "",
-    meme_src : ""
+    url : ""
   }
   const [formData, setFormData] = useState<EditFormData>(initialFormData)
   const [loading, setLoading] = useState<boolean>(false)
@@ -25,7 +25,7 @@ const EditForm :React.FC<{_id:string, toggleShowForm:any}> = ({_id,toggleShowFor
     e.preventDefault()
     
     try{
-      if(formData.caption === "" && formData.meme_src === ""){
+      if(formData.caption === "" && formData.url === ""){
         return;
       }
       console.log("update data : ",formData)
@@ -53,7 +53,7 @@ const EditForm :React.FC<{_id:string, toggleShowForm:any}> = ({_id,toggleShowFor
             label="URL"
             name="meme_src"
           >
-            <Input value={formData.meme_src} name="meme_src" onChange={changeHandler} /> 
+            <Input value={formData.url} name="url" onChange={changeHandler} /> 
           </Form.Item>
           <Button type="primary" htmlType="submit" onClick={submitHandler} loading={loading}>
             Update

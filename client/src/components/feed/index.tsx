@@ -11,14 +11,14 @@ const Feed: React.FC<FeedProps | null> = ({memes}) => {
   return (
     <>
       <div className="feed">    
-        {memes && memes.length ? memes.map(({_id, createdAt, posted_by, caption, meme_src})=>{
+        {memes && memes.length ? memes.map(({_id, createdAt, name, caption, url})=>{
           return <Post 
                   key = {_id}
                   _id = {_id}
                   createdAt = {createdAt}
-                  posted_by = {posted_by}
+                  name = {name}
                   caption = {caption}
-                  meme_src = {meme_src}
+                  url = {url}
                 />
         }) : <Spin size="large" />}
       </div>

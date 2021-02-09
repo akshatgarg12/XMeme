@@ -11,7 +11,7 @@ export interface postData extends memeData{
   createdAt : string
 }
 
-const Post: React.FC<postData> = ({_id, createdAt,posted_by, caption, meme_src}) => {
+const Post: React.FC<postData> = ({_id, createdAt,name, caption, url}) => {
   
   const [showEditForm, setShowEditForm] = useState<boolean>(true)
   const toggleShowForm = () => setShowEditForm(!showEditForm)
@@ -19,7 +19,7 @@ const Post: React.FC<postData> = ({_id, createdAt,posted_by, caption, meme_src})
   return (
     <div className="card">
        <div className="card__header">
-              <h3>{posted_by}</h3>
+              <h3>{name}</h3>
               <p>{new Date(createdAt).toLocaleDateString()}</p>
               <div style={{marginLeft:"auto"}}>
               <EditFilled onClick={toggleShowForm} />
@@ -32,7 +32,7 @@ const Post: React.FC<postData> = ({_id, createdAt,posted_by, caption, meme_src})
               <h4>{caption}</h4>
             </div>
             <div className="card__img">
-              <img alt="meme_img" src={meme_src} />
+              <img alt="meme_img" src={url} />
             </div>  
           </> : <EditForm  _id = {_id} toggleShowForm={toggleShowForm} />
           

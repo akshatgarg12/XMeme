@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose');
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8081
 
 // MIDDLEWARES
 require('dotenv').config()
@@ -11,7 +11,9 @@ app.use(express.urlencoded({extended:true}))
 app.use(cors())
 
 // DB CONNECTION
-const db_conn = mongoose.connect(process.env.MONGO_URI,{
+const __prod__ = process.env.NODE_ENV === "production" 
+const mongo_db_connection_mode = __prod__ ? process.env.MONGO_URI : "mongodb://localhost:27017/XMeme"
+const db_conn = mongoose.connect(mongo_db_connection_mode,{
    useUnifiedTopology: true,
    useNewUrlParser: true,
    useCreateIndex: true, 

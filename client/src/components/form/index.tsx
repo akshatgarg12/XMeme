@@ -14,15 +14,14 @@ const layout = {
 
 const MemeForm = () => {
   const initialFormData:memeData ={
-    posted_by:"",
+    name:"",
     caption:"",
-    meme_src:""
+    url:""
   } 
   const [formData, setFormData] = useState<memeData>(initialFormData)
   const [loading, setLoading] = useState<boolean>(false)
   const onFinish = (values: any) => {
     console.log(formData);
-    // setFormData(initialFormData)
     submitHandler()
   };
 
@@ -46,7 +45,6 @@ const MemeForm = () => {
       console.log(e.message);
     }finally{
       updateMemes(dispatch)
-      setFormData(initialFormData)
       setLoading(false)
     }
   }
@@ -65,7 +63,7 @@ const MemeForm = () => {
             name="username"
             rules={[{ required: true, message: 'Please input your username!' }]}
           >
-          <Input value={formData?.posted_by}  name="posted_by" onChange={changeHandler} />
+          <Input value={formData?.name}  name="name" onChange={changeHandler} />
         </Form.Item>
 
         <Form.Item
@@ -81,7 +79,7 @@ const MemeForm = () => {
           name="memeurl"
           rules={[{ required: true, message: 'Please input a valid meme url' }]}
         >
-          <Input value={formData?.meme_src}  name="meme_src" onChange={changeHandler}  />
+          <Input value={formData?.url}  name="url" onChange={changeHandler}  />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" className="memeform__button" loading={loading}>

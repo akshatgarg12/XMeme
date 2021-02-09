@@ -10,8 +10,9 @@ sudo apt update
 
 sudo apt install -y mongodb-org
 
+sudo apt-get install nodejs
 
-
+sudo apt-get install npm
 
 # Any configuration related commands
 

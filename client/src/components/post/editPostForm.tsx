@@ -1,4 +1,4 @@
-import {Form, Input, Button} from 'antd'
+import {Form, Input, Button, message} from 'antd'
 import {HTTP_REQUEST} from '../../action/http'
 import {useMemeContext} from '../../context/useMemeContext'
 import {updateMemes} from '../../action/utilityFunctions'
@@ -29,16 +29,16 @@ const EditForm :React.FC<{_id:string, toggleShowForm:any}> = ({_id,toggleShowFor
         return;
       }
       console.log("update data : ",formData)
-      setLoading(true)
-      const request = await HTTP_REQUEST({method:"PATCH", path:`/memes/${_id}`, body:formData, setLoading:null})
+      const request = await HTTP_REQUEST({method:"PATCH", path:`/memes/${_id}`, body:formData, setLoading})
       console.log(request)
+      message.success("meme updated")
     }
     catch(e){
       console.log(e.message);
+      message.error("error :" + e.message)
     }finally{
       updateMemes(dispatch)
       toggleShowForm()
-      setLoading(false)
     }
   }
   return (

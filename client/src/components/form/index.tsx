@@ -4,6 +4,7 @@ import {HTTP_REQUEST} from '../../action/http';
 import {memeData} from '../../constant'
 import {updateMemes} from '../../action/utilityFunctions'
 import {useMemeContext} from '../../context/useMemeContext'
+import { message } from 'antd';
 
 import './style.css'
 
@@ -36,16 +37,15 @@ const MemeForm = () => {
   const {dispatch}  = useMemeContext()
  
   const submitHandler = async () => {
-    setLoading(true)
     try{
-      const request = await HTTP_REQUEST({method:"POST", path:"/memes", body:formData, setLoading:null})
+      const request = await HTTP_REQUEST({method:"POST", path:"/memes", body:formData, setLoading})
       console.log(request)
+      message.success("New meme created",5)
     }
     catch(e){
-      console.log(e.message);
+      message.error("error occured : " + e?.message,5)
     }finally{
       updateMemes(dispatch)
-      setLoading(false)
     }
   }
   return (

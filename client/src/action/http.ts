@@ -25,6 +25,12 @@ export const HTTP_REQUEST = async ({method, path, body, setLoading} : params) =>
       return request.data
     }catch(e){
       console.log(e.response.data)
+      const {displayMessage} = e.response.data
+      if(displayMessage){
+        throw new Error(JSON.stringify(displayMessage))
+      }else{
+        throw new Error("try again later")
+      }
     }finally{
       setLoading && setLoading(false);
     }

@@ -22,7 +22,7 @@ const CREATE = async (req, res) => {
     return;
   }catch(e){
     // duplication error
-    console.log(e)
+    console.log(e.message)
     if(e.code === 11000){
       res.status(409).json({message:"Bad request", displayMessage:"This meme already exists."})
       return;
@@ -71,7 +71,7 @@ const READ = async (req, res) =>{
     res.send(memes)
   }
   catch(e){
-    console.log(e)
+    console.log(e.message)
     res.status(500).json({error:e.message})
   }
 }

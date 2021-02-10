@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import EditForm from './editPostForm'
 import {memeData} from '../../constant'
 import {useState} from 'react'
@@ -15,7 +15,7 @@ const Post: React.FC<postData> = ({_id, createdAt,name, caption, url}) => {
   
   const [showEditForm, setShowEditForm] = useState<boolean>(true)
   const toggleShowForm = () => setShowEditForm(!showEditForm)
-
+  const imageElement = useRef(null)
   return (
     <div className="card">
        <div className="card__header">
@@ -32,7 +32,8 @@ const Post: React.FC<postData> = ({_id, createdAt,name, caption, url}) => {
               <h4>{caption}</h4>
             </div>
             <div className="card__img">
-              <img alt="meme_img" src={url} />
+              {/* @ts-ignore */}
+              <img alt="meme_img" src={url} ref={imageElement} onError={()=> imageElement.current.src = "https://i1.wp.com/media.giphy.com/media/8L0Pky6C83SzkzU55a/source.gif?w=525&ssl=1"} />
             </div>  
           </> : <EditForm  _id = {_id} toggleShowForm={toggleShowForm} />
           

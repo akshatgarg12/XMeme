@@ -1,4 +1,5 @@
 import {createContext, useReducer} from 'react'
+import {postData} from '../components/post'
 
 
 export const memeContext = createContext<any>(null)
@@ -16,7 +17,8 @@ const MemeContextProvider: React.FC<any> = ({children}) => {
   }
   
   // @ts-ignore
-  const [state, dispatch] = useReducer(reducer, []);
+  const initialState: [postData] | null = null;
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <memeContext.Provider value={{memes: state, dispatch}}>
       {children}

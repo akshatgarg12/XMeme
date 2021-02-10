@@ -10,9 +10,18 @@ sudo apt update
 
 sudo apt install -y mongodb-org
 
-sudo apt-get install nodejs
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 
-sudo apt-get install npm
+. ~/.nvm/nvm.sh
+
+nvm install node
+
+node -v
+npm -v
+
+sudo yum update -y
+sudo yum install git -y
+git — version
 
 # Any configuration related commands
 

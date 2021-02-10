@@ -1,0 +1,198 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "XMeme-Crio CRUD",
+    "description": "XMeme a meme sharing platform API",
+    "license": {
+    "name": "MIT",
+    "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host":[
+    {
+      "url":"http//localhost:8081"
+    }
+  ],
+  "basePath": "/",
+  "tags": [
+    {
+    "name": "Memes",
+    "description": "API for memes in the system"
+    }
+  ],
+  "schemes": [
+   "http"
+  ],
+  "consumes": [
+   "application/json"
+  ],
+  "produces": [
+   "application/json"
+  ],
+  "paths": {
+    "/memes": {
+      "get": {
+        "tags": [
+        "Memes"
+        ],
+        "summary": "Get the latest 100 memes from the database",
+        "responses": {
+            "200": {
+            "description": "OK",
+            "schema" : {
+              "$ref":"#definitions/Memes"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+        "Memes"
+        ],
+        "parameters": [
+          {
+            "name": "meme",
+            "in": "body",
+            "description": "meme that we want to create",
+            "schema": {
+              "$ref": "#/definitions/PostMeme"
+            }
+          }
+        ],
+        "summary": "Adds a new meme to the system",
+        "responses": {
+            "200": {
+            "description": "OK",
+            "schema" : {
+              "$ref":"#definitions/MemeID"
+            }
+          }
+        }
+      }
+  },
+  "/memes/{_id}" : {
+    "get": {
+      "tags": [
+        "Memes"
+      ],
+      "parameters":[
+        {
+          "name":"_id",
+          "required":true,
+          "description":"Id of the Meme",
+          "type":"string",
+          "in":"path"  
+        }
+      ],
+      "summary": "Get the specified ID Meme",
+      "responses": {
+          "200": {
+          "description": "OK",
+          "schema" : {
+            "$ref":"#definitions/Meme"
+          }
+        }
+      }
+    },
+    "patch": {
+      "tags": [
+        "Memes"
+      ],
+      
+      "parameters": [
+        {
+          "name": "caption and url",
+          "in": "body",
+          "description": "changes made in url or caption",
+          "schema": {
+            "$ref": "#/definitions/UpdateMeme"
+          }
+        },
+        {
+          "name":"_id",
+          "required":true,
+          "description":"Id of the Meme",
+          "type":"string",
+          "in":"path"  
+        }
+      ],
+      "summary": "Edit the caption or url of a meme",
+      "responses": {
+          "200": {
+          "description": "OK",
+          "schema" : {
+            "$ref":"#definitions/Meme"
+          }
+        }
+      }
+    }
+  }
+},
+  "definitions": {
+    "Meme": {
+    "required": [
+      "name",
+      "caption",
+      "url"
+    ],
+    "properties": {
+      "_id": {
+      "type": "string",
+      "uniqueItems": true
+      },
+      "name": {
+      "type": "string"
+      },
+      "caption": {
+      "type": "string"
+      },
+      "url": {
+        "type": "string"
+      },
+      "createdAt": {
+      "type": "string"
+      }
+    }
+    },
+    "Memes": {
+      "type": "array",
+      "$ref": "#/definitions/Meme"
+    },
+    "MemeID": {
+      "properties":{
+        "id" : {
+          "type":"string"
+        }
+      }
+    },
+    "PostMeme": {
+      "required": [
+        "name",
+        "caption",
+        "url"
+      ],
+      "properties": {
+        "name": {
+        "type": "string"
+        },
+        "caption": {
+        "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+      },
+      "UpdateMeme": {
+        "properties": {
+          "caption": {
+          "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+        }
+    }
+}

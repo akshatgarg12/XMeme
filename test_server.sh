@@ -1,7 +1,6 @@
 
 #!/bin/bash
 
-
 # git clone the repo
 git clone https://gitlab.crio.do/COHORT_ME_BUILDOUT_XMEME_ENROLL_1612436694845/akshatarungarg78-me_buildout_xmeme.git
 # cd to the cloned repo directory
@@ -56,4 +55,4 @@ curl --location --request GET 'http://localhost:8081/memes'
 
 # If you have swagger enabled, make sure it is exposed at localhost:8080
 
-# curl --location --request GET 'http://localhost:8080/swagger-ui/'
+curl --location --request GET 'http://localhost:8081/swagger-ui/'

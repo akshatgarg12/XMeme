@@ -17,7 +17,6 @@ const Feed: React.FC<FeedProps | null> = ({memes}) => {
       const endIndex = startIndex+postPerPage > memes?.length ? memes.length : startIndex+postPerPage
       // @ts-ignore
       setShowMemes(memes.slice(startIndex, endIndex))
-      console.log(showMemes, pageNumber)
     }
     
   // eslint-disable-next-line react-hooks/exhaustive-deps

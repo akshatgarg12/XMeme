@@ -1,4 +1,4 @@
-# XMeme
+# XMeme 🤡
 
 A Simple application where people can post and read memes.
 

@@ -11,7 +11,7 @@
   },
   "host":[
     {
-      "url":"http//localhost:8081"
+      "url":"https://xmeme-crio.herokuapp.com"
     }
   ],
   "basePath": "/",

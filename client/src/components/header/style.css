@@ -30,9 +30,19 @@
   animation-duration: 4s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  text-align: center;
+  display: flex;
   padding: 10px;
   margin-bottom: 20px;
+}
+.header h4{
+  margin: auto 0;
+  padding:10px;
+  font-size: 1rem;
+  color:white;
+  background: #272727;
+}
+.header a{
+  text-decoration: none;
 }
 .header h1{
   animation: border-highlights;

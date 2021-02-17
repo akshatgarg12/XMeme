@@ -19,12 +19,15 @@ nvm install node
 node -v
 npm -v
 
-sudo yum update -y
-sudo yum install git -y
-git — version
+sudo apt update -y
+sudo apt install git -y
+git -v
 
 # Any configuration related commands
+
 
 sudo systemctl start mongod
 
 sudo systemctl enable mongod
+
+mongo XMeme --eval "db.dropDatabase()"

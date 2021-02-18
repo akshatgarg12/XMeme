@@ -16,7 +16,7 @@ sudo apt install -y mongodb-org
 sudo systemctl start mongod
 
 # display MongoDB running status
-sudo systemctl status mongod
+# sudo systemctl status mongod
 
 # make mongodb as a service and restart on reboots
 sudo systemctl enable mongod
@@ -25,7 +25,8 @@ sudo systemctl enable mongod
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 
 # . ~/.nvm/nvm.sh
-sudo apt-get install npm
+sudo apt-get install -y npm
+sudo apt install -y nodejs
 # nvm install node
 node -v
 npm -v

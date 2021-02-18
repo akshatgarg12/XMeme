@@ -17,8 +17,6 @@ sudo systemctl start mongod
 mongo XMeme --eval
 # display MongoDB running status
 # sudo systemctl status mongod
-# delete the pre existing data
-mongo XMeme --eval "db.dropDatabase()"
 # make mongodb as a service and restart on reboots
 sudo systemctl enable mongod
 

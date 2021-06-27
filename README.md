@@ -1,5 +1,8 @@
 # XMeme 🤡
+(*Deployed Server has been taken down, Try it on your local machine.*)
 
+
+<br/>
 A Simple application where people can post and read memes.
 
 ## Installation
